@@ -30,8 +30,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="137.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="yTH-gs-RdY" userLabel="rightSideData">
-                                                    <rect key="frame" x="301" y="8" width="137" height="123"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="yTH-gs-RdY" userLabel="rightSideData">
+                                                    <rect key="frame" x="301" y="8" width="137" height="150"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Hg-3Q-ZtV" userLabel="timeStick">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="1"/>
@@ -52,7 +52,7 @@
                                                             </variation>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wSy-Jz-mFh" userLabel="data">
-                                                            <rect key="frame" x="0.0" y="1" width="137" height="122"/>
+                                                            <rect key="frame" x="0.0" y="1" width="137" height="149"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOC-C4-cgJ">
                                                                     <rect key="frame" x="8" y="8" width="130" height="27"/>
@@ -119,6 +119,23 @@
                                                                         <mask key="constraints">
                                                                             <exclude reference="Fo0-DT-z3f"/>
                                                                             <exclude reference="b2p-zs-r7T"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44 milliseconds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAd-Bh-9TA">
+                                                                    <rect key="frame" x="8" y="114" width="130" height="27"/>
+                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="194" id="177-1c-n8i"/>
+                                                                        <constraint firstAttribute="height" constant="44" id="MTb-oZ-oAa"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                                    <color key="textColor" red="0.22529797260000001" green="0.22529122230000001" blue="0.2252950668" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="MTb-oZ-oAa"/>
+                                                                            <exclude reference="177-1c-n8i"/>
                                                                         </mask>
                                                                     </variation>
                                                                 </label>
@@ -246,6 +263,7 @@
                                             <outlet property="floorStick" destination="onB-Dd-Pa0" id="eJ9-Se-O9v"/>
                                             <outlet property="floorsLabel" destination="A65-kD-TDx" id="wiP-RY-xBn"/>
                                             <outlet property="hoursLabel" destination="qXb-cB-JyC" id="Irg-Tc-JIC"/>
+                                            <outlet property="millisecondsLabel" destination="mAd-Bh-9TA" id="7LB-Wa-hjH"/>
                                             <outlet property="minutesLabel" destination="ZSw-y1-YcY" id="GPu-QJ-xDA"/>
                                             <outlet property="secondsLabel" destination="VST-Cq-C20" id="Yey-KJ-zjK"/>
                                         </connections>

@@ -18,6 +18,7 @@ class IntervalCell: UITableViewCell {
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var minutesLabel: UILabel!
     @IBOutlet weak var secondsLabel: UILabel!
+    @IBOutlet weak var millisecondsLabel: UILabel!
     @IBOutlet weak var floorsLabel: UILabel!
     @IBOutlet weak var floorStick: UIView!
     
@@ -28,8 +29,7 @@ class IntervalCell: UITableViewCell {
         
 //        setClearBackgroundForViews()
         
-        C.setFormattingForLabels([distance, daysLabel, hoursLabel, minutesLabel, secondsLabel, floorsLabel])
-        
+        C.setFormattingForLabels([distance, daysLabel, hoursLabel, minutesLabel, secondsLabel, floorsLabel, millisecondsLabel])
     }
     
     func updateLocationDistanceFromStartAndEndLocations(start:CLLocation, end:CLLocation){
@@ -77,15 +77,21 @@ class IntervalCell: UITableViewCell {
     func updateElapsedTimeFromStartAndEndTimes(start:NSDate, end:NSDate) {
         let calendar: NSCalendar = NSCalendar.currentCalendar()
         
-        let components = calendar.components([.Day, .Hour, .Minute, .Second],
+        let components = calendar.components([.Day, .Hour, .Minute, .Second, .Nanosecond],
             fromDate: start,
             toDate: end,
             options: [])
+        
         
         setTimeLabel(daysLabel, value: components.day, unit: "day")
         setTimeLabel(hoursLabel, value: components.hour, unit: "hour")
         setTimeLabel(minutesLabel, value: components.minute, unit: "minute")
         setTimeLabel(secondsLabel, value: components.second, unit: "second")
+        
+        let ms = Int(components.nanosecond/1000000)
+        setTimeLabel(millisecondsLabel, value: ms, unit: "ms")
+        print("MS: \(ms)")
+        
         
     }
     
@@ -98,10 +104,11 @@ class IntervalCell: UITableViewCell {
             label.hidden = true
             return
         case 1:
-            
             break
         default:
-            pluralS = "s"
+            if unit != "ms" {
+                pluralS = "s"
+                }
             break
         }
         label.hidden = false
