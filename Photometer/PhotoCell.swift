@@ -43,7 +43,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     }
     
     func leaveViewPort(){
-        print("preparetoenterviewport!")
         if let cellPhoto = photo {
             cellPhoto.alpha = 0
             cellPhoto.image = UIImage(named: "placeholder")
@@ -56,7 +55,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     }
     
     func showCameraButton(){
-        print("showCameraButton")
         photo.image = UIImage(named: "camera")
         let tap = UITapGestureRecognizer(target: self, action: "startCamera")
         photo.userInteractionEnabled = true
@@ -66,7 +64,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     }
     
     func startCamera(){
-        print("Startcamera!")
         let frame = CGRectMake(0, 0, photo.frame.size.width+30, photo.frame.size.height+30)
         let p = UIView(frame: frame)
         photo.addSubview(p)
@@ -80,14 +77,11 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     }
     
     func mJCameraImageFinishedSaving(image: UIImage) {
-
-        print("DONE taking that photo")
         delegate?.photoCellWantsTableUpdate()
     }
     
     
     func didEnterViewPort(){
-        print("didEnterViewPort!")
         UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.photo.alpha = 1
             self.photo.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1,1);
@@ -97,7 +91,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     
     
     func getImage(){
-        print("getimage")
         meterImage.getImage { (image) -> Void in
             let i = image
             self.photo.image = i

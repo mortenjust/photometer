@@ -30,6 +30,14 @@ class IntervalCell: UITableViewCell {
         backgroundColor = UIColor.clearColor()
         allLabels = [distance, daysLabel, hoursLabel, minutesLabel, secondsLabel, floorsLabel, millisecondsLabel]
        C.setFormattingForLabels(allLabels)
+        
+        fadeOutLabels([millisecondsLabel, secondsLabel, minutesLabel, hoursLabel, daysLabel])
+    }
+    
+    func fadeOutLabels(views:[UIView]){
+        for view in views {
+            view.alpha = 0
+        }
     }
     
     func resetAllLabels(){
@@ -49,10 +57,11 @@ class IntervalCell: UITableViewCell {
     }
     
     func beginTimerFrom(mostRecentPhoto:NSDate){
-        timer = NSTimer.every(0.14.seconds) { () -> Void in
+        timer = NSTimer.every(0.08.seconds) { () -> Void in
             self.updateElapsedTimeFromStartAndEndTimes(mostRecentPhoto, end: NSDate())
             
         }
+        timer?.fire()
     }
     
     func stopTimer(){
@@ -87,14 +96,28 @@ class IntervalCell: UITableViewCell {
         return distanceString
     }
     
+    func fadeInIfNeeded(views:[UIView]){
+        if views.first?.alpha == 1 { return }
+        var i:Double = 0
+        let stagger:Double = 100
+        for view in views {
+            UIView.animateWithDuration(0.5,
+                delay: i++ * (stagger/1000),
+                options: UIViewAnimationOptions.CurveEaseIn,
+                animations: { () -> Void in
+                    view.alpha = 1
+                },
+                completion: nil)
+        }
+    }
+    
+    
     func updateElapsedTimeFromStartAndEndTimes(start:NSDate, end:NSDate) {
         let calendar: NSCalendar = NSCalendar.currentCalendar()
-        
         let components = calendar.components([.Day, .Hour, .Minute, .Second, .Nanosecond],
             fromDate: start,
             toDate: end,
             options: [])
-        
         
         setTimeLabel(daysLabel, value: components.day, unit: "day")
         setTimeLabel(hoursLabel, value: components.hour, unit: "hour")
@@ -103,7 +126,11 @@ class IntervalCell: UITableViewCell {
         
         let ms = Int(components.nanosecond/1000000)
         setTimeLabel(millisecondsLabel, value: ms, unit: "ms")
+        
+        
+        fadeInIfNeeded([millisecondsLabel, secondsLabel, minutesLabel, hoursLabel, daysLabel])
     }
+    
     
     func setTimeLabel(label:UILabel, value:Int, unit:String){
         var pluralS = ""

@@ -20,7 +20,6 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = (allPhotos.count * 2) - 1 + 1 // +1 is for the top photo which is the live one
-        print("just returned \(count)")
         return count
     }
     
@@ -69,6 +68,7 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     
     func getLiveIntervalCell()->UITableViewCell{
         let interval = photoTable.dequeueReusableCellWithIdentifier("intervalCell")! as! IntervalCell
+        
         interval.resetAllLabels()
         let mostRecentPhotoTimestamp = getMostRecentTimestamp()
         interval.beginTimerFrom(mostRecentPhotoTimestamp)        
@@ -77,12 +77,10 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("indexPathrow:\(indexPath.row)")
         if indexPath.row == 0 {
              return getLivePhotoCell()
         }
         if indexPath.row == 1 {
-            print("getting liveintervalcell")
             return getLiveIntervalCell()
         }
         
