@@ -10,10 +10,11 @@ import UIKit
 import Photos
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PhotoTableAdapterDelegate {
     var fetcher:PhotoFetcher!
     var adapter:PhotoTableAdapter!
     @IBOutlet weak var photoTable: UITableView!
+
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -27,6 +28,9 @@ class ViewController: UIViewController {
         return UIStatusBarAnimation.Slide
     }
     
+    func PhotoTableWantsFetchUpdate() {
+        refreshPhotoList()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +41,14 @@ class ViewController: UIViewController {
         
         adapter = PhotoTableAdapter()
         adapter.photoTable = photoTable
+        adapter.adapterDelegate = self
         
         photoTable.separatorStyle = .None
         photoTable.dataSource = adapter
         photoTable.delegate = adapter
         photoTable.backgroundColor = C.photoTableBackgroundColor
-        
+    
+
         fetcher = PhotoFetcher()        
         refreshPhotoList()
     }
@@ -55,6 +61,7 @@ class ViewController: UIViewController {
     func refreshPhotoList(){
         fetcher.getAll { (photos) -> Void in
             print("Done getting all \(photos.count) images. Reloading data")
+
             self.adapter.allPhotos = photos
             self.photoTable.reloadData()
         }

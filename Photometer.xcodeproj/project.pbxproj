@@ -19,6 +19,9 @@
 		C8C0E89F1C28C6FD00C538AE /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E89E1C28C6FD00C538AE /* PhotoCell.swift */; };
 		C8C0E8A21C2BC6B500C538AE /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A11C2BC6B500C538AE /* C.swift */; };
 		C8C0E8A41C2BC84100C538AE /* SwiftyGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */; };
+		C8C0E8A61C2DECD600C538AE /* MJCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A51C2DECD600C538AE /* MJCamera.swift */; };
+		C8C0E8AC1C2E8E7700C538AE /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */; };
+		C8C0E8B31C2F1AEC00C538AE /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +38,11 @@
 		C8C0E89C1C28C4A300C538AE /* PhotoTableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableAdapter.swift; sourceTree = "<group>"; };
 		C8C0E89E1C28C6FD00C538AE /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		C8C0E8A01C28D5FF00C538AE /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
-		C8C0E8A11C2BC6B500C538AE /* C.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = C.swift; path = Photometer/C.swift; sourceTree = "<group>"; };
-		C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyGradient.swift; path = Photometer/SwiftyGradient.swift; sourceTree = "<group>"; };
+		C8C0E8A11C2BC6B500C538AE /* C.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
+		C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyGradient.swift; sourceTree = "<group>"; };
+		C8C0E8A51C2DECD600C538AE /* MJCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJCamera.swift; sourceTree = "<group>"; };
+		C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyTimer.swift; path = Photometer/SwiftyTimer.swift; sourceTree = "<group>"; };
+		C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C0E8B31C2F1AEC00C538AE /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,10 +60,10 @@
 		C89539911C279DE800A471AF = {
 			isa = PBXGroup;
 			children = (
-				C8C0E8A11C2BC6B500C538AE /* C.swift */,
-				C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */,
+				C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */,
 				C895399C1C279DE800A471AF /* Photometer */,
 				C895399B1C279DE800A471AF /* Products */,
+				C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +78,9 @@
 		C895399C1C279DE800A471AF /* Photometer */ = {
 			isa = PBXGroup;
 			children = (
+				C8C0E8A51C2DECD600C538AE /* MJCamera.swift */,
+				C8C0E8A11C2BC6B500C538AE /* C.swift */,
+				C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */,
 				C8C0E8941C27DFEE00C538AE /* PhotoFetcher.swift */,
 				C89539AF1C27D96B00A471AF /* MeterImage.swift */,
 				C895399D1C279DE800A471AF /* AppDelegate.swift */,
@@ -160,6 +170,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8C0E89B1C28BE9800C538AE /* IntervalCell.swift in Sources */,
+				C8C0E8A61C2DECD600C538AE /* MJCamera.swift in Sources */,
+				C8C0E8AC1C2E8E7700C538AE /* SwiftyTimer.swift in Sources */,
 				C8C0E8A41C2BC84100C538AE /* SwiftyGradient.swift in Sources */,
 				C8C0E89D1C28C4A300C538AE /* PhotoTableAdapter.swift in Sources */,
 				C8C0E8951C27DFEE00C538AE /* PhotoFetcher.swift in Sources */,
@@ -282,8 +294,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					FRAMEWORK_SEARCH_PATHS,
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
+				);
 				INFOPLIST_FILE = Photometer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mortenjust.Photometer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -296,6 +321,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					FRAMEWORK_SEARCH_PATHS,
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
+				);
 				INFOPLIST_FILE = Photometer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mortenjust.Photometer;

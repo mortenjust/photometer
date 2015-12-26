@@ -21,30 +21,43 @@ class IntervalCell: UITableViewCell {
     @IBOutlet weak var millisecondsLabel: UILabel!
     @IBOutlet weak var floorsLabel: UILabel!
     @IBOutlet weak var floorStick: UIView!
+    var timer : NSTimer?
+    
+    var allLabels:[UILabel]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         backgroundColor = UIColor.clearColor()
-        
-//        setClearBackgroundForViews()
-        
-        C.setFormattingForLabels([distance, daysLabel, hoursLabel, minutesLabel, secondsLabel, floorsLabel, millisecondsLabel])
+        allLabels = [distance, daysLabel, hoursLabel, minutesLabel, secondsLabel, floorsLabel, millisecondsLabel]
+       C.setFormattingForLabels(allLabels)
+    }
+    
+    func resetAllLabels(){
+        for l in allLabels {
+            l.text = ""
+        }
     }
     
     func updateLocationDistanceFromStartAndEndLocations(start:CLLocation, end:CLLocation){
-        
         self.distance.text = getLocationDistanceString(start, end: end)
     }
     
     
-
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
+    func beginTimerFrom(mostRecentPhoto:NSDate){
+        timer = NSTimer.every(0.14.seconds) { () -> Void in
+            self.updateElapsedTimeFromStartAndEndTimes(mostRecentPhoto, end: NSDate())
+            
+        }
+    }
+    
+    func stopTimer(){
+        timer?.invalidate()
+    }
     
     func updateAltitudeDifference(start:CLLocation, end:CLLocation) {
         
@@ -90,9 +103,6 @@ class IntervalCell: UITableViewCell {
         
         let ms = Int(components.nanosecond/1000000)
         setTimeLabel(millisecondsLabel, value: ms, unit: "ms")
-        print("MS: \(ms)")
-        
-        
     }
     
     func setTimeLabel(label:UILabel, value:Int, unit:String){

@@ -23,7 +23,6 @@ class MeterImage: NSObject {
     func getImage(complete:(image:UIImage)->Void){
         let imageManager = PHCachingImageManager()
         let imageSize = CGSize(width: asset.pixelWidth/2, height: asset.pixelHeight/2)
-        //let imageSize = CGSizeMake(200, 200)
         
         let options = PHImageRequestOptions()
         options.deliveryMode = .HighQualityFormat

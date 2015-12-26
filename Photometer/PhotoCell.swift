@@ -10,13 +10,23 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class PhotoCell: UITableViewCell {
+protocol PhotoCellDelegate {
+    func photoCellWantsTableUpdate()
+}
+
+class PhotoCell: UITableViewCell, MJCameraDelegate {
 
     @IBOutlet weak var timeTaken: UILabel!
     @IBOutlet weak var photo: UIImageView!
     var meterImage = MeterImage()
     @IBOutlet weak var locationLabel: UILabel!
+    var camera : MJCamera!
+    var delegate:PhotoCellDelegate?
     
+    func resetAllLabels(){
+        timeTaken.text = ""
+        locationLabel.text = ""
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,14 +43,52 @@ class PhotoCell: UITableViewCell {
         C.setFormattingForLabels([locationLabel])
     }
     
-    func prepareToEnterViewport(){
-            photo.alpha = 0
-            photo.image = nil
-            photo.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8, 0.8);
-
+    func leaveViewPort(){
+        print("preparetoenterviewport!")
+        if let cellPhoto = photo {
+            cellPhoto.alpha = 0
+            cellPhoto.image = UIImage(named: "placeholder")
+            cellPhoto.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8, 0.8);
+            }
+        if let c = camera {
+            c.captureSession.stopRunning()
+            c.previewLayer?.removeFromSuperlayer()
+        }
     }
     
+    func showCameraButton(){
+        print("showCameraButton")
+        photo.image = UIImage(named: "camera")
+        let tap = UITapGestureRecognizer(target: self, action: "startCamera")
+        photo.userInteractionEnabled = true
+        photo.addGestureRecognizer(tap)
+        self.didEnterViewPort()
+    }
+    
+    func startCamera(){
+        print("Startcamera!")
+        photo.backgroundColor = UIColor.blackColor()
+        let frame = CGRectMake(0, 0, photo.frame.size.width+30, photo.frame.size.height+30)
+        let p = UIView(frame: frame)
+        photo.addSubview(p)
+        camera = MJCamera(previewView: p)
+        camera.start()
+        camera.delegate = self
+        NSTimer.after(1.second) { () -> Void in
+            self.camera.captureImage()
+            // calls mJcameraImageFinishedSaving when done
+        }
+    }
+    
+    func mJCameraImageFinishedSaving(image: UIImage) {
+
+        print("DONE taking that photo")
+        delegate?.photoCellWantsTableUpdate()
+    }
+    
+    
     func didEnterViewPort(){
+        print("didEnterViewPort!")
         UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.photo.alpha = 1
             self.photo.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1,1);
@@ -52,7 +100,8 @@ class PhotoCell: UITableViewCell {
     func getImage(){
         print("getimage")
         meterImage.getImage { (image) -> Void in
-            self.photo.image = image
+            let i = image
+            self.photo.image = i
             self.didEnterViewPort()
         }
     }
