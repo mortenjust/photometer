@@ -30,6 +30,7 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     
     func getPhotoCellForIndexPath(indexPath:NSIndexPath) -> UITableViewCell {
         let photo = photoTable.dequeueReusableCellWithIdentifier("photoCell")! as! PhotoCell
+        photo.resetAllLabels()
         let photoId = (indexPath.row+1)/2 - 1
         let currentPhoto = allPhotos[photoId]
         photo.meterImage = currentPhoto
@@ -56,6 +57,7 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     
     func getIntervalCellForIndexPath(indexPath:NSIndexPath) -> UITableViewCell {
         let interval = photoTable.dequeueReusableCellWithIdentifier("intervalCell")! as! IntervalCell
+        interval.resetAllLabels()
         let intervalTimes = getTimestampsForIntervalCell(indexPath.row)
         interval.updateElapsedTimeFromStartAndEndTimes(intervalTimes.start, end: intervalTimes.end)
         if let locations = getLocationsForIntervalCell(indexPath.row) {

@@ -39,7 +39,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
         photo.layer.borderColor = C.imageBorderColor.CGColor
         photo.layer.borderWidth = 1.0
         backgroundColor = UIColor.clearColor()
-        
         C.setFormattingForLabels([locationLabel])
     }
     
@@ -63,11 +62,11 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
         photo.userInteractionEnabled = true
         photo.addGestureRecognizer(tap)
         self.didEnterViewPort()
+        photo.backgroundColor = UIColor.blackColor()
     }
     
     func startCamera(){
         print("Startcamera!")
-        photo.backgroundColor = UIColor.blackColor()
         let frame = CGRectMake(0, 0, photo.frame.size.width+30, photo.frame.size.height+30)
         let p = UIView(frame: frame)
         photo.addSubview(p)
