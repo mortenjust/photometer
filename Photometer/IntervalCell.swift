@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 
 
-class IntervalCell: UITableViewCell {
+class IntervalCell : UITableViewCell {
 
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var daysLabel: UILabel!
@@ -20,7 +20,7 @@ class IntervalCell: UITableViewCell {
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var millisecondsLabel: UILabel!
     @IBOutlet weak var floorsLabel: UILabel!
-    @IBOutlet weak var floorStick: UIView!
+
     var timer : NSTimer?
     
     var allLabels:[UILabel]!
@@ -29,15 +29,10 @@ class IntervalCell: UITableViewCell {
         super.awakeFromNib()
         backgroundColor = UIColor.clearColor()
         allLabels = [distance, daysLabel, hoursLabel, minutesLabel, secondsLabel, floorsLabel, millisecondsLabel]
-       C.setFormattingForLabels(allLabels)
-        
-        fadeOutLabels([millisecondsLabel, secondsLabel, minutesLabel, hoursLabel, daysLabel])
     }
     
-    func fadeOutLabels(views:[UIView]){
-        for view in views {
-            view.alpha = 0
-        }
+    func prepareForViewport(){
+
     }
     
     func resetAllLabels(){
@@ -77,14 +72,12 @@ class IntervalCell: UITableViewCell {
         let floors = round(diff / 3) // 3m ceiling
         var floorString = ""
         
-        if floors > 0 {
+        if floors > 1 {
             floorsLabel.hidden = false
-            floorStick.hidden = false
-            floorString = ", \(Int(abs(floors))) floors"
+            floorString = "\(Int(abs(floors))) floors"
             floorsLabel.text = floorString
         } else {
             floorsLabel.hidden = true
-            floorStick.hidden = true
         }
     }
     
@@ -96,23 +89,9 @@ class IntervalCell: UITableViewCell {
         return distanceString
     }
     
-    func fadeInIfNeeded(views:[UIView]){
-        if views.first?.alpha == 1 { return }
-        var i:Double = 0
-        let stagger:Double = 100
-        for view in views {
-            UIView.animateWithDuration(0.5,
-                delay: i++ * (stagger/1000),
-                options: UIViewAnimationOptions.CurveEaseIn,
-                animations: { () -> Void in
-                    view.alpha = 1
-                },
-                completion: nil)
-        }
-    }
-    
     
     func updateElapsedTimeFromStartAndEndTimes(start:NSDate, end:NSDate) {
+        C.setFormattingForLabels(allLabels)
         let calendar: NSCalendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Day, .Hour, .Minute, .Second, .Nanosecond],
             fromDate: start,
@@ -125,10 +104,22 @@ class IntervalCell: UITableViewCell {
         setTimeLabel(secondsLabel, value: components.second, unit: "second")
         
         let ms = Int(components.nanosecond/1000000)
-        setTimeLabel(millisecondsLabel, value: ms, unit: "ms")
+        setTimeLabel(millisecondsLabel, value: ms, unit: "millisecond")
+
+        
+        let timeLabels = [millisecondsLabel, secondsLabel, minutesLabel, hoursLabel, daysLabel]
+        var topLabel = millisecondsLabel
         
         
-        fadeInIfNeeded([millisecondsLabel, secondsLabel, minutesLabel, hoursLabel, daysLabel])
+        for label in timeLabels {
+            if label.hidden == false {
+                topLabel = label
+                print("top label is "+label.text!)
+            }
+        }
+        
+        topLabel.textColor = C.highlightColor
+
     }
     
     
@@ -137,15 +128,16 @@ class IntervalCell: UITableViewCell {
         
         switch value {
         case 0:
-            if unit == "second" { break }
+            pluralS = "s"
+//            if unit == "second" {
+//                pluralS = "s"
+//                break }
             label.hidden = true
             return
         case 1:
             break
         default:
-            if unit != "ms" {
-                pluralS = "s"
-                }
+            pluralS = "s"
             break
         }
         label.hidden = false

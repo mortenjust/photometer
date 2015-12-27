@@ -17,6 +17,7 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     var photoTable : UITableView!
     var allPhotos:[MeterImage] = [MeterImage]()
     var adapterDelegate : PhotoTableAdapterDelegate?
+    var vc : ViewController!
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = (allPhotos.count * 2) - 1 + 1 // +1 is for the top photo which is the live one
@@ -51,15 +52,16 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
         photo.showCameraButton()
         photo.resetAllLabels()
         photo.updateTimeTaken(NSDate())
+        photo.vc = self.vc
         return photo
     }
     
     func getIntervalCellForIndexPath(indexPath:NSIndexPath) -> UITableViewCell {
         let interval = photoTable.dequeueReusableCellWithIdentifier("intervalCell")! as! IntervalCell
         interval.resetAllLabels()
-        let intervalTimes = getTimestampsForIntervalCell(indexPath.row)
+        let intervalTimes = getTimestampsForIntervalCell(indexPath.row-2)
         interval.updateElapsedTimeFromStartAndEndTimes(intervalTimes.start, end: intervalTimes.end)
-        if let locations = getLocationsForIntervalCell(indexPath.row) {
+        if let locations = getLocationsForIntervalCell(indexPath.row-2) {
             interval.updateLocationDistanceFromStartAndEndLocations(locations.start, end: locations.end)
             interval.updateAltitudeDifference(locations.start, end: locations.end)
         }
@@ -93,9 +95,9 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if rowIsPhoto(indexPath.row){
-            return 130
+            return 128
         } else {
-            return 138
+            return 180
         }
     }
     
@@ -115,6 +117,11 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
 //            let photoCell = cell as! PhotoCell
 //            photoCell.prepareToEnterViewport()
 //        }
+        
+        if !rowIsPhoto(indexPath.row){
+            let interval = cell as! IntervalCell
+            interval.prepareForViewport()
+        }
     }
     
     func getLocationsForIntervalCell(cellIndex:Int) -> (start:CLLocation, end:CLLocation)? {

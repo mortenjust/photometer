@@ -13,16 +13,50 @@ protocol MJCameraDelegate {
     func mJCameraImageFinishedSaving(image:UIImage)
 }
 
-class MJCamera : NSObject {
+class MJCamera : NSObject, AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CameraOverlayDelegate {
     var captureDevice : AVCaptureDevice?
     let captureSession = AVCaptureSession()
     var previewLayer:AVCaptureVideoPreviewLayer?
     var previewView:UIView?
     var stillImageOutput: AVCaptureStillImageOutput!
     var delegate : MJCameraDelegate?
+    var vc:ViewController!
+    var picker:UIImagePickerController!
     
     init(previewView _previewView:UIView?) {
         previewView = _previewView
+    }
+    
+    func startSimpleCamera(){
+        picker = UIImagePickerController()
+        picker.sourceType = .Camera
+        picker.delegate = self
+        
+        picker.cameraFlashMode = .Auto
+//        picker.cameraViewTransform
+        
+        let frame = CGRectMake(0 , 0 , 105, 105)
+        let overlayView = CameraOverlayView(frame:  frame)
+        overlayView.delegate = self
+        picker.cameraOverlayView = overlayView
+
+        picker.showsCameraControls = false
+
+        picker.allowsEditing = false
+        vc.presentViewController(picker, animated: true) { () -> Void in
+            
+        }
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        // TODO: Save image here. Shit, I'm starting to think it doesn't have the full thing either. But the viewcontroller is a better experience though.
+        saveImage(image)
+    }
+    
+    func cameraOverlayShutterClicked() {
+        picker.takePicture()
     }
     
     
@@ -59,8 +93,18 @@ class MJCamera : NSObject {
         previewLayer?.frame = previewView!.frame
 
         stillImageOutput = AVCaptureStillImageOutput()
+        let metadataOutput = AVCaptureMetadataOutput()
+        metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureSession.addOutput(metadataOutput)
+        
         captureSession.addOutput(stillImageOutput)
         captureSession.startRunning()
+    }
+    
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+//        for metadata in metadataObjects {
+//
+//        }
     }
     
     
@@ -82,12 +126,16 @@ class MJCamera : NSObject {
             self.stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { (imageSampleBuffer:CMSampleBuffer!, _) -> Void in
                 let imageDataJpeg = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer)
                 let pickedImage = UIImage(data: imageDataJpeg)
-                UIImageWriteToSavedPhotosAlbum(pickedImage!, self, "imageSaved:didFinishSavingWithError:contextInfo:", nil)
+                self.saveImage(pickedImage!)
             })
             
         }
     }
     
+    
+    func saveImage(image:UIImage){
+        UIImageWriteToSavedPhotosAlbum(image, self, "imageSaved:didFinishSavingWithError:contextInfo:", nil)
+    }
     
      func imageSaved(image: UIImage, didFinishSavingWithError error: NSError,
         contextInfo: UnsafeMutablePointer<Void>){
@@ -105,8 +153,8 @@ class MJCamera : NSObject {
             try device.lockForConfiguration()
                 device.focusMode = .ContinuousAutoFocus
                 device.unlockForConfiguration()
-            } catch {
-                print("Couldn't lock for config") // TODO: Add throw handling
+            } catch let error {
+                print("Couldn't lock for config: \(error)")
             }
         }
     }    

@@ -15,9 +15,11 @@ class C: NSObject {
 //    static var appBackgroundColor = UIColor.blackColor()
     static var photoTableBackgroundColor = UIColor.clearColor()
 
-static var imageBorderColor = UIColor.clearColor()
-  static var labelColor = UIColor.lightGrayColor()
+    static var imageBorderColor = UIColor.clearColor()
+    static var labelColor = UIColor.lightGrayColor()
     static var appBackgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1)
+    static var highlightColor = UIColor(hue:0.096, saturation:0.779, brightness:0.992, alpha:1)
+    
     //    static var imageBorderColor = UIColor.lightGrayColor()
     
     

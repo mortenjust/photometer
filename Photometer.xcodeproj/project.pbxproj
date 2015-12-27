@@ -21,7 +21,7 @@
 		C8C0E8A41C2BC84100C538AE /* SwiftyGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */; };
 		C8C0E8A61C2DECD600C538AE /* MJCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A51C2DECD600C538AE /* MJCamera.swift */; };
 		C8C0E8AC1C2E8E7700C538AE /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */; };
-		C8C0E8B31C2F1AEC00C538AE /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */; };
+		C8C0E8D31C2FC16A00C538AE /* CameraOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8D21C2FC16A00C538AE /* CameraOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +43,7 @@
 		C8C0E8A51C2DECD600C538AE /* MJCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJCamera.swift; sourceTree = "<group>"; };
 		C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyTimer.swift; path = Photometer/SwiftyTimer.swift; sourceTree = "<group>"; };
 		C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		C8C0E8D21C2FC16A00C538AE /* CameraOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraOverlayView.swift; path = Photometer/CameraOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8C0E8B31C2F1AEC00C538AE /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +60,7 @@
 		C89539911C279DE800A471AF = {
 			isa = PBXGroup;
 			children = (
+				C8C0E8D21C2FC16A00C538AE /* CameraOverlayView.swift */,
 				C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */,
 				C895399C1C279DE800A471AF /* Photometer */,
 				C895399B1C279DE800A471AF /* Products */,
@@ -177,6 +178,7 @@
 				C8C0E8951C27DFEE00C538AE /* PhotoFetcher.swift in Sources */,
 				C8C0E89F1C28C6FD00C538AE /* PhotoCell.swift in Sources */,
 				C89539B01C27D96B00A471AF /* MeterImage.swift in Sources */,
+				C8C0E8D31C2FC16A00C538AE /* CameraOverlayView.swift in Sources */,
 				C8C0E8A21C2BC6B500C538AE /* C.swift in Sources */,
 				C89539A01C279DE800A471AF /* ViewController.swift in Sources */,
 				C895399E1C279DE800A471AF /* AppDelegate.swift in Sources */,

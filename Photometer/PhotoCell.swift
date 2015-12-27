@@ -15,13 +15,13 @@ protocol PhotoCellDelegate {
 }
 
 class PhotoCell: UITableViewCell, MJCameraDelegate {
-
     @IBOutlet weak var timeTaken: UILabel!
     @IBOutlet weak var photo: UIImageView!
     var meterImage = MeterImage()
     @IBOutlet weak var locationLabel: UILabel!
     var camera : MJCamera!
     var delegate:PhotoCellDelegate?
+    var vc : ViewController!
     
     func resetAllLabels(){
         timeTaken.text = ""
@@ -68,13 +68,17 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
         let p = UIView(frame: frame)
         photo.addSubview(p)
         camera = MJCamera(previewView: p)
-        camera.start()
         camera.delegate = self
-        NSTimer.after(1.second) { () -> Void in
-            self.camera.captureImage()
-            // calls mJcameraImageFinishedSaving when done
-        }
+        camera.vc = self.vc
+        
+        camera.startSimpleCamera()
+        
+//        NSTimer.after(1.second) { () -> Void in
+//            //self.camera.captureImage()
+//            // calls mJcameraImageFinishedSaving when done
+//        }
     }
+    
     
     func mJCameraImageFinishedSaving(image: UIImage) {
         delegate?.photoCellWantsTableUpdate()

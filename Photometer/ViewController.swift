@@ -42,13 +42,13 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
         adapter = PhotoTableAdapter()
         adapter.photoTable = photoTable
         adapter.adapterDelegate = self
+        adapter.vc = self
         
         photoTable.separatorStyle = .None
         photoTable.dataSource = adapter
         photoTable.delegate = adapter
         photoTable.backgroundColor = C.photoTableBackgroundColor
     
-
         fetcher = PhotoFetcher()        
         refreshPhotoList()
     }
