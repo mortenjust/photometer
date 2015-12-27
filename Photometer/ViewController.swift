@@ -17,7 +17,7 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
 
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -61,9 +61,9 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
     func refreshPhotoList(){
         fetcher.getAll { (photos) -> Void in
             print("Done getting all \(photos.count) images. Reloading data")
-
             self.adapter.allPhotos = photos
             self.photoTable.reloadData()
+            self.photoTable.contentOffset = CGPointMake(0, 128)
         }
     }
 
