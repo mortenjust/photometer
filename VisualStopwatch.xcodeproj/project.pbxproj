@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C893CCFE1C30F6FC006DC73A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C893CCFD1C30F6FC006DC73A /* Assets.xcassets */; };
+		C895399E1C279DE800A471AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895399D1C279DE800A471AF /* AppDelegate.swift */; };
+		C89539A01C279DE800A471AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895399F1C279DE800A471AF /* ViewController.swift */; };
+		C89539A31C279DE800A471AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89539A11C279DE800A471AF /* Main.storyboard */; };
+		C89539A81C279DE800A471AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89539A61C279DE800A471AF /* LaunchScreen.storyboard */; };
+		C89539B01C27D96B00A471AF /* MeterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89539AF1C27D96B00A471AF /* MeterImage.swift */; };
+		C8C0E8951C27DFEE00C538AE /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8941C27DFEE00C538AE /* PhotoFetcher.swift */; };
+		C8C0E89B1C28BE9800C538AE /* IntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E89A1C28BE9800C538AE /* IntervalCell.swift */; };
+		C8C0E89D1C28C4A300C538AE /* PhotoTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E89C1C28C4A300C538AE /* PhotoTableAdapter.swift */; };
+		C8C0E89F1C28C6FD00C538AE /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E89E1C28C6FD00C538AE /* PhotoCell.swift */; };
+		C8C0E8A21C2BC6B500C538AE /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A11C2BC6B500C538AE /* C.swift */; };
+		C8C0E8A41C2BC84100C538AE /* SwiftyGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */; };
+		C8C0E8A61C2DECD600C538AE /* MJCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8A51C2DECD600C538AE /* MJCamera.swift */; };
+		C8C0E8AC1C2E8E7700C538AE /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */; };
+		C8C0E8D31C2FC16A00C538AE /* CameraOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8D21C2FC16A00C538AE /* CameraOverlayView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C893CCFD1C30F6FC006DC73A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		C895399A1C279DE800A471AF /* Stopwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stopwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C895399D1C279DE800A471AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C895399F1C279DE800A471AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C89539A21C279DE800A471AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C89539A71C279DE800A471AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C89539A91C279DE800A471AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C89539AF1C27D96B00A471AF /* MeterImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeterImage.swift; sourceTree = "<group>"; };
+		C8C0E8941C27DFEE00C538AE /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFetcher.swift; sourceTree = "<group>"; };
+		C8C0E89A1C28BE9800C538AE /* IntervalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalCell.swift; sourceTree = "<group>"; };
+		C8C0E89C1C28C4A300C538AE /* PhotoTableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableAdapter.swift; sourceTree = "<group>"; };
+		C8C0E89E1C28C6FD00C538AE /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		C8C0E8A01C28D5FF00C538AE /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		C8C0E8A11C2BC6B500C538AE /* C.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
+		C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyGradient.swift; sourceTree = "<group>"; };
+		C8C0E8A51C2DECD600C538AE /* MJCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJCamera.swift; sourceTree = "<group>"; };
+		C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyTimer.swift; path = Photometer/SwiftyTimer.swift; sourceTree = "<group>"; };
+		C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		C8C0E8D21C2FC16A00C538AE /* CameraOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraOverlayView.swift; path = Photometer/CameraOverlayView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C89539971C279DE800A471AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C89539911C279DE800A471AF = {
+			isa = PBXGroup;
+			children = (
+				C8C0E8D21C2FC16A00C538AE /* CameraOverlayView.swift */,
+				C8C0E8AB1C2E8E7700C538AE /* SwiftyTimer.swift */,
+				C895399C1C279DE800A471AF /* Photometer */,
+				C895399B1C279DE800A471AF /* Products */,
+				C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		C895399B1C279DE800A471AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C895399A1C279DE800A471AF /* Stopwatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C895399C1C279DE800A471AF /* Photometer */ = {
+			isa = PBXGroup;
+			children = (
+				C893CCFD1C30F6FC006DC73A /* Assets.xcassets */,
+				C8C0E8A51C2DECD600C538AE /* MJCamera.swift */,
+				C8C0E8A11C2BC6B500C538AE /* C.swift */,
+				C8C0E8A31C2BC84100C538AE /* SwiftyGradient.swift */,
+				C8C0E8941C27DFEE00C538AE /* PhotoFetcher.swift */,
+				C89539AF1C27D96B00A471AF /* MeterImage.swift */,
+				C895399D1C279DE800A471AF /* AppDelegate.swift */,
+				C895399F1C279DE800A471AF /* ViewController.swift */,
+				C89539A11C279DE800A471AF /* Main.storyboard */,
+				C8C0E89A1C28BE9800C538AE /* IntervalCell.swift */,
+				C8C0E89E1C28C6FD00C538AE /* PhotoCell.swift */,
+				C8C0E8A01C28D5FF00C538AE /* MyPlayground.playground */,
+				C8C0E89C1C28C4A300C538AE /* PhotoTableAdapter.swift */,
+				C89539A61C279DE800A471AF /* LaunchScreen.storyboard */,
+				C89539A91C279DE800A471AF /* Info.plist */,
+			);
+			path = Photometer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C89539991C279DE800A471AF /* Stopwatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C89539AC1C279DE800A471AF /* Build configuration list for PBXNativeTarget "Stopwatch" */;
+			buildPhases = (
+				C89539961C279DE800A471AF /* Sources */,
+				C89539971C279DE800A471AF /* Frameworks */,
+				C89539981C279DE800A471AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Stopwatch;
+			productName = Photometer;
+			productReference = C895399A1C279DE800A471AF /* Stopwatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C89539921C279DE800A471AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Morten Just Petersen";
+				TargetAttributes = {
+					C89539991C279DE800A471AF = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = UDGLB23X37;
+					};
+				};
+			};
+			buildConfigurationList = C89539951C279DE800A471AF /* Build configuration list for PBXProject "VisualStopwatch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C89539911C279DE800A471AF;
+			productRefGroup = C895399B1C279DE800A471AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C89539991C279DE800A471AF /* Stopwatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C89539981C279DE800A471AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89539A81C279DE800A471AF /* LaunchScreen.storyboard in Resources */,
+				C893CCFE1C30F6FC006DC73A /* Assets.xcassets in Resources */,
+				C89539A31C279DE800A471AF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C89539961C279DE800A471AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8C0E89B1C28BE9800C538AE /* IntervalCell.swift in Sources */,
+				C8C0E8A61C2DECD600C538AE /* MJCamera.swift in Sources */,
+				C8C0E8AC1C2E8E7700C538AE /* SwiftyTimer.swift in Sources */,
+				C8C0E8A41C2BC84100C538AE /* SwiftyGradient.swift in Sources */,
+				C8C0E89D1C28C4A300C538AE /* PhotoTableAdapter.swift in Sources */,
+				C8C0E8951C27DFEE00C538AE /* PhotoFetcher.swift in Sources */,
+				C8C0E89F1C28C6FD00C538AE /* PhotoCell.swift in Sources */,
+				C89539B01C27D96B00A471AF /* MeterImage.swift in Sources */,
+				C8C0E8D31C2FC16A00C538AE /* CameraOverlayView.swift in Sources */,
+				C8C0E8A21C2BC6B500C538AE /* C.swift in Sources */,
+				C89539A01C279DE800A471AF /* ViewController.swift in Sources */,
+				C895399E1C279DE800A471AF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C89539A11C279DE800A471AF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C89539A21C279DE800A471AF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C89539A61C279DE800A471AF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C89539A71C279DE800A471AF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C89539AA1C279DE800A471AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C89539AB1C279DE800A471AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C89539AD1C279DE800A471AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					FRAMEWORK_SEARCH_PATHS,
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
+				);
+				INFOPLIST_FILE = Photometer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mortenjust.VisualStopwatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		C89539AE1C279DE800A471AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					FRAMEWORK_SEARCH_PATHS,
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
+				);
+				INFOPLIST_FILE = Photometer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mortenjust.VisualStopwatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C89539951C279DE800A471AF /* Build configuration list for PBXProject "VisualStopwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C89539AA1C279DE800A471AF /* Debug */,
+				C89539AB1C279DE800A471AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C89539AC1C279DE800A471AF /* Build configuration list for PBXNativeTarget "Stopwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C89539AD1C279DE800A471AF /* Debug */,
+				C89539AE1C279DE800A471AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C89539921C279DE800A471AF /* Project object */;
+}

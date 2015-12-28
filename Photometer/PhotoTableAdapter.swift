@@ -34,9 +34,9 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
         let photoId = (indexPath.row+1)/2 - 1
         let currentPhoto = allPhotos[photoId]
         photo.meterImage = currentPhoto
-        if let location = currentPhoto.location {
-            photo.setAddressString(location)
-        }
+//        if let location = currentPhoto.location {
+//            photo.setAddressString(location)
+//        }
         photo.updateTimeTaken(currentPhoto.creationDate)
         photo.getImage()
         return photo
@@ -106,7 +106,6 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
             let intervalCell = cell as! IntervalCell
             intervalCell.stopTimer()
         } else {
-        
             let photoCell = cell as! PhotoCell
             photoCell.leaveViewPort()
         }

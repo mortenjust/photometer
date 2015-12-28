@@ -61,6 +61,7 @@ class IntervalCell : UITableViewCell {
     
     func stopTimer(){
         timer?.invalidate()
+        timer = nil
     }
     
     func updateAltitudeDifference(start:CLLocation, end:CLLocation) {
@@ -114,12 +115,9 @@ class IntervalCell : UITableViewCell {
         for label in timeLabels {
             if label.hidden == false {
                 topLabel = label
-                print("top label is "+label.text!)
             }
         }
-        
         topLabel.textColor = C.highlightColor
-
     }
     
     

@@ -17,9 +17,9 @@ protocol PhotoCellDelegate {
 class PhotoCell: UITableViewCell, MJCameraDelegate {
     @IBOutlet weak var timeTaken: UILabel!
     @IBOutlet weak var photo: UIImageView!
-    var meterImage = MeterImage()
+    weak var meterImage = MeterImage()
     @IBOutlet weak var locationLabel: UILabel!
-    var camera : MJCamera!
+    weak var camera : MJCamera!
     var delegate:PhotoCellDelegate?
     var vc : ViewController!
     
@@ -45,12 +45,25 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     func leaveViewPort(){
         if let cellPhoto = photo {
             cellPhoto.alpha = 0
-            cellPhoto.image = UIImage(named: "placeholder")
-            cellPhoto.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8, 0.8);
+            cellPhoto.image = nil
+            
+            removeCameraButtonIfNecessary()
+            if let c = camera {
+                c.captureSession.stopRunning()
+                c.previewLayer?.removeFromSuperlayer()
             }
-        if let c = camera {
-            c.captureSession.stopRunning()
-            c.previewLayer?.removeFromSuperlayer()
+        }
+    }
+    
+    func removeCameraButtonIfNecessary(){
+        if let cellPhoto = photo {
+            if let gestures = cellPhoto.gestureRecognizers {
+                for g in gestures {
+                    cellPhoto.removeGestureRecognizer(g)
+                }
+            }
+            photo.userInteractionEnabled = false
+            photo.backgroundColor = UIColor.clearColor()
         }
     }
     
@@ -73,10 +86,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
         
         camera.startSimpleCamera()
         
-//        NSTimer.after(1.second) { () -> Void in
-//            //self.camera.captureImage()
-//            // calls mJcameraImageFinishedSaving when done
-//        }
     }
     
     
@@ -95,7 +104,7 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     
     
     func getImage(){
-        meterImage.getImage { (image) -> Void in
+        meterImage?.getImage { (image) -> Void in
             let i = image
             self.photo.image = i
             self.didEnterViewPort()
