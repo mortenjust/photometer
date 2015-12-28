@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="491-kh-mbe">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
+        <!--Detail View Controller-->
+        <scene sceneID="Olg-8N-aFV">
+            <objects>
+                <viewController id="2aR-Vg-ArD" customClass="DetailViewController" customModule="Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TlY-nO-DQS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yw0-Oz-mH8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cIM-2a-XeN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sd4-zf-HgF">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Sd4-zf-HgF" secondAttribute="trailing" id="0k2-LE-wEA"/>
+                            <constraint firstItem="Yw0-Oz-mH8" firstAttribute="top" secondItem="Sd4-zf-HgF" secondAttribute="bottom" id="1s8-nl-act"/>
+                            <constraint firstItem="Sd4-zf-HgF" firstAttribute="top" secondItem="TlY-nO-DQS" secondAttribute="bottom" id="IdR-B1-Ekc"/>
+                            <constraint firstItem="Sd4-zf-HgF" firstAttribute="leading" secondItem="cIM-2a-XeN" secondAttribute="leading" id="cwE-Hz-LGM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Sd4-zf-HgF" id="oYa-0G-zQF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k07-qi-QQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933" y="251"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Photometer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,8 +55,8 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="intervalCell" rowHeight="180" id="8u9-1h-kiP" customClass="IntervalCell" customModule="Photometer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="intervalCell" rowHeight="180" id="8u9-1h-kiP" customClass="IntervalCell" customModule="Stopwatch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8u9-1h-kiP" id="py5-Pe-m8g">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
@@ -135,8 +168,8 @@
                                             <outlet property="secondsLabel" destination="VST-Cq-C20" id="Yey-KJ-zjK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="photoCell" rowHeight="128" id="0Jt-q7-Ldn" customClass="PhotoCell" customModule="Photometer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="208" width="600" height="128"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="photoCell" rowHeight="128" id="0Jt-q7-Ldn" customClass="PhotoCell" customModule="Stopwatch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="272" width="600" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Jt-q7-Ldn" id="tDc-hr-ADg">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="127.5"/>
@@ -201,6 +234,10 @@
                                             <outlet property="locationLabel" destination="q6Z-3Z-Z4H" id="hWa-EL-1V3"/>
                                             <outlet property="photo" destination="wxd-om-yQF" id="GxY-E1-RvM"/>
                                             <outlet property="timeTaken" destination="aKo-xL-Wtl" id="Elc-Iu-XVB"/>
+                                            <segue destination="2aR-Vg-ArD" kind="show" identifier="detailSegue" id="Vni-Wb-7ht">
+                                                <segue key="commit" inheritsFrom="parent" id="DNT-th-rVy"/>
+                                                <segue key="preview" inheritsFrom="commit" id="9Z2-1y-JTj"/>
+                                            </segue>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -208,6 +245,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Rxw-kA-kpQ"/>
                     <connections>
                         <outlet property="photoTable" destination="smG-Dk-of6" id="OgX-hY-WpP"/>
                     </connections>
@@ -223,5 +261,24 @@
             </objects>
             <point key="canvasLocation" x="108" y="266"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CFQ-0y-mdD">
+            <objects>
+                <navigationController id="491-kh-mbe" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Att-UK-Cr2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lph-Px-GW2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m6f-mR-I2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-632" y="266"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vni-Wb-7ht"/>
+    </inferredMetricsTieBreakers>
 </document>

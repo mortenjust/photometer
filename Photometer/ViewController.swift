@@ -14,7 +14,7 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
     var fetcher:PhotoFetcher!
     var adapter:PhotoTableAdapter!
     @IBOutlet weak var photoTable: UITableView!
-
+    var currentMeterImage:MeterImage!
     
     override func prefersStatusBarHidden() -> Bool {
         return false
@@ -32,8 +32,15 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
         refreshPhotoList()
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
         
         view.backgroundColor = C.appBackgroundColor
         
@@ -66,6 +73,15 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
             self.photoTable.contentOffset = CGPointMake(0, 128)
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "detailSegue" {
+            let detailVc = segue.destinationViewController as! DetailViewController
+            detailVc.meterImage = currentMeterImage
+//            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

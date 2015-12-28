@@ -39,6 +39,8 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
 //        }
         photo.updateTimeTaken(currentPhoto.creationDate)
         photo.getImage()
+        vc.currentMeterImage = photo.meterImage
+        
         return photo
     }
     
@@ -121,6 +123,7 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
             let interval = cell as! IntervalCell
             interval.prepareForViewport()
         }
+        
     }
     
     func getLocationsForIntervalCell(cellIndex:Int) -> (start:CLLocation, end:CLLocation)? {
