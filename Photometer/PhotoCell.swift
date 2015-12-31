@@ -19,7 +19,7 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     @IBOutlet weak var photo: UIImageView!
     weak var meterImage:MeterImage?
     @IBOutlet weak var locationLabel: UILabel!
-    weak var camera : MJCamera!
+    var camera : MJCamera!
     var delegate:PhotoCellDelegate?
     var vc : ViewController!
     
@@ -80,19 +80,16 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
         let frame = CGRectMake(0, 0, photo.frame.size.width+30, photo.frame.size.height+30)
         let p = UIView(frame: frame)
         photo.addSubview(p)
-        camera = MJCamera(previewView: p)
+        
+        camera = MJCamera()
         camera.delegate = self
         camera.vc = self.vc
-        
         camera.startSimpleCamera()
-        
     }
-    
     
     func mJCameraImageFinishedSaving(image: UIImage) {
         delegate?.photoCellWantsTableUpdate()
     }
-    
     
     func didEnterViewPort(){
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
@@ -100,8 +97,6 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
             self.photo.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1,1);
             }, completion: nil)
     }
-    
-    
     
     func setAddressString(location:CLLocation){
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks, err) -> Void in            

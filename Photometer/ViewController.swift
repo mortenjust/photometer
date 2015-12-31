@@ -14,7 +14,7 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
     var fetcher:PhotoFetcher!
     var adapter:PhotoTableAdapter!
     @IBOutlet weak var photoTable: UITableView!
-    var currentMeterImage:MeterImage!
+    var selectedMeterImage:MeterImage?
     
     override func prefersStatusBarHidden() -> Bool {
         return false
@@ -74,13 +74,23 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
         }
     }
     
+    
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        return selectedMeterImage == nil ? false : true
+//    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "detailSegue" {
-            let detailVc = segue.destinationViewController as! DetailViewController
-            detailVc.meterImage = currentMeterImage
-//            self.navigationController?.setNavigationBarHidden(false, animated: true)
-        }
+        print("vcseg: Ready for segue \(segue.identifier)")
+            if segue.identifier == "detailSegue" {
+                let detailVc = segue.destinationViewController as! DetailViewController
+                if let image = self.selectedMeterImage {
+                    detailVc.meterImage = image
+                    self.selectedMeterImage = nil
+                    }
+            }
     }
+    
+
     
 
     override func didReceiveMemoryWarning() {

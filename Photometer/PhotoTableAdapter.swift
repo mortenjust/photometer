@@ -29,19 +29,24 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
         return rowNumber%2 == 0 ? true : false
     }
     
+    
+    func meterImageForIndexPath(indexPath:NSIndexPath) -> MeterImage {
+        let photoId = (indexPath.row+1)/2 - 1
+        return allPhotos[photoId]
+        
+    }
 
     func getPhotoCellForIndexPath(indexPath:NSIndexPath) -> UITableViewCell {
         let photo = photoTable.dequeueReusableCellWithIdentifier("photoCell")! as! PhotoCell
         photo.resetAllLabels()
-        vc.currentMeterImage = photo.meterImage
         
         let manager = PHCachingImageManager.defaultManager()
         if photo.tag != 0 {
             manager.cancelImageRequest(PHImageRequestID(photo.tag))
         }
         
-        let photoId = (indexPath.row+1)/2 - 1
-        let currentPhoto = allPhotos[photoId]
+
+        let currentPhoto = meterImageForIndexPath(indexPath)
         
         photo.meterImage = currentPhoto
         photo.updateTimeTaken(currentPhoto.creationDate)
@@ -139,7 +144,17 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
             let interval = cell as! IntervalCell
             interval.prepareForViewport()
         }
-        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if !rowIsPhoto(indexPath.row){return}
+        print("Did select")
+    }
+    
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        print("highlight")
+        vc.selectedMeterImage = meterImageForIndexPath(indexPath)
+
     }
     
     func getLocationsForIntervalCell(cellIndex:Int) -> (start:CLLocation, end:CLLocation)? {

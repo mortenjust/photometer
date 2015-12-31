@@ -24,8 +24,15 @@ class MJCamera : NSObject, AVCaptureMetadataOutputObjectsDelegate, UIImagePicker
     var picker:UIImagePickerController!
     
     init(previewView _previewView:UIView?) {
+        super.init()
         previewView = _previewView
     }
+    
+    override init(){
+        super.init()
+    }
+    
+    func startCamera(){}
     
     func startSimpleCamera(){
         picker = UIImagePickerController()

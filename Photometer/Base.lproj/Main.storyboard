@@ -116,7 +116,7 @@
                                                         <constraint firstAttribute="height" constant="14" id="z7p-qp-4RY"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 floors" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A65-kD-TDx">
@@ -124,7 +124,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -202,7 +202,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1893 Garamond Street, San Francisco and Omegn" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6Z-3Z-Z4H">
                                                             <rect key="frame" x="0.0" y="19.5" width="252.5" height="13"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10.5"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -234,9 +234,9 @@
                                             <outlet property="locationLabel" destination="q6Z-3Z-Z4H" id="hWa-EL-1V3"/>
                                             <outlet property="photo" destination="wxd-om-yQF" id="GxY-E1-RvM"/>
                                             <outlet property="timeTaken" destination="aKo-xL-Wtl" id="Elc-Iu-XVB"/>
-                                            <segue destination="2aR-Vg-ArD" kind="show" identifier="detailSegue" id="Vni-Wb-7ht">
-                                                <segue key="commit" inheritsFrom="parent" id="DNT-th-rVy"/>
-                                                <segue key="preview" inheritsFrom="commit" id="9Z2-1y-JTj"/>
+                                            <segue destination="2aR-Vg-ArD" kind="show" identifier="detailSegue" id="yPd-vn-ZLB">
+                                                <segue key="commit" inheritsFrom="parent" id="2p9-Eo-8s5"/>
+                                                <segue key="preview" inheritsFrom="commit" id="JLT-yD-xV8"/>
                                             </segue>
                                         </connections>
                                     </tableViewCell>
@@ -279,6 +279,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vni-Wb-7ht"/>
+        <segue reference="yPd-vn-ZLB"/>
     </inferredMetricsTieBreakers>
 </document>

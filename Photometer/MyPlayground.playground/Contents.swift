@@ -9,10 +9,10 @@ var isPhoto = false
 var speed : Int?
 let direction = 0
 
+
 let speedString = speed == 0 ? "first" : "second"
 
-let speedstring2 = speed ?? 6
 
-speed ?? 1
+speed == nil ? false : true
 
-let spStr = "\()"
+

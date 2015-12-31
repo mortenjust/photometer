@@ -38,7 +38,7 @@ class DetailViewController: UIViewController {
             
             
             pin.title = formatTime(meterImage.creationDate)
-            pin.subtitle = "altitude \(altitude)  \(speed) \(floor)"
+            pin.subtitle = "altitude \(altitude) \(speed) \(floor)"
             
             print(pin.subtitle!)
             
