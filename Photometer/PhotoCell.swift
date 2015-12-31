@@ -17,7 +17,7 @@ protocol PhotoCellDelegate {
 class PhotoCell: UITableViewCell, MJCameraDelegate {
     @IBOutlet weak var timeTaken: UILabel!
     @IBOutlet weak var photo: UIImageView!
-    weak var meterImage = MeterImage()
+    weak var meterImage:MeterImage?
     @IBOutlet weak var locationLabel: UILabel!
     weak var camera : MJCamera!
     var delegate:PhotoCellDelegate?
@@ -95,7 +95,7 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     
     
     func didEnterViewPort(){
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.photo.alpha = 1
             self.photo.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1,1);
             }, completion: nil)
@@ -103,17 +103,8 @@ class PhotoCell: UITableViewCell, MJCameraDelegate {
     
     
     
-    func getImage(){
-        meterImage?.getImage { (image) -> Void in
-            let i = image
-            self.photo.image = i
-            self.didEnterViewPort()
-        }
-    }
-    
     func setAddressString(location:CLLocation){
-        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, err) -> Void in
-            
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, err) -> Void in            
             if let p = placemarks {
                 let address = p[0].name!
                 

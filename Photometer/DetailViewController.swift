@@ -8,11 +8,13 @@
 
 import UIKit
 import MapKit
+import Contacts
 
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     var meterImage:MeterImage!
+
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -27,16 +29,59 @@ class DetailViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        print("viedidload and setting coord: \(meterImage.location?.coordinate.latitude)")
-        
         if let location = meterImage.location {
             let pin = MKPointAnnotation()
+            
+            let altitude = formatDistance(location.altitude)
+            let speed = formatSpeed(location.speed)
+            let floor = location.floor?.level == nil ? "" : "\(location.floor?.level) floor"
+            
+            
+            pin.title = formatTime(meterImage.creationDate)
+            pin.subtitle = "altitude \(altitude)  \(speed) \(floor)"
+            
+            print(pin.subtitle!)
+            
             pin.coordinate = location.coordinate
             mapView.addAnnotation(pin)
             let cam = MKMapCamera(lookingAtCenterCoordinate: location.coordinate, fromDistance: 500, pitch: 50, heading: 0)
             mapView.camera = cam
+            mapView.selectAnnotation(pin, animated: true)
             }
     }
+    
+    
+    func formatDistance(d:CLLocationDistance) -> String {
+        let formatter = MKDistanceFormatter()
+        formatter.unitStyle = .Default
+        let distanceString = formatter.stringFromDistance(d)
+        return d == 0 ? "" : distanceString
+    }
+    
+    func formatSpeed(speed: CLLocationSpeed) -> String {
+        return speed == 0 ? "" : String(format: "%.0f km/h", speed * 3.6)
+    }
+    
+    func reverseGeocode(location:CLLocation) -> String {
+        var locationLabel = ""
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, err) -> Void in
+            if let p = placemarks {
+                let address = p[0].name!
+                locationLabel = address
+            }
+        }
+        return locationLabel
+    }
+    
+    func formatTime(date:NSDate) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .MediumStyle
+        let dateString = formatter.stringFromDate(date)
+        return "\(dateString)"
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

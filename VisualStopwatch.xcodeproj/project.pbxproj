@@ -14,6 +14,7 @@
 		C89539A81C279DE800A471AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89539A61C279DE800A471AF /* LaunchScreen.storyboard */; };
 		C89539B01C27D96B00A471AF /* MeterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89539AF1C27D96B00A471AF /* MeterImage.swift */; };
 		C8A3AC531C31D1E90017A301 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3AC521C31D1E90017A301 /* DetailViewController.swift */; };
+		C8A3AC551C3275540017A301 /* MeterImageAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3AC541C3275540017A301 /* MeterImageAnnotation.swift */; };
 		C8C0E8951C27DFEE00C538AE /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E8941C27DFEE00C538AE /* PhotoFetcher.swift */; };
 		C8C0E89B1C28BE9800C538AE /* IntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E89A1C28BE9800C538AE /* IntervalCell.swift */; };
 		C8C0E89D1C28C4A300C538AE /* PhotoTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0E89C1C28C4A300C538AE /* PhotoTableAdapter.swift */; };
@@ -35,6 +36,7 @@
 		C89539A91C279DE800A471AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C89539AF1C27D96B00A471AF /* MeterImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeterImage.swift; sourceTree = "<group>"; };
 		C8A3AC521C31D1E90017A301 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C8A3AC541C3275540017A301 /* MeterImageAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeterImageAnnotation.swift; path = Photometer/MeterImageAnnotation.swift; sourceTree = "<group>"; };
 		C8C0E8941C27DFEE00C538AE /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFetcher.swift; sourceTree = "<group>"; };
 		C8C0E89A1C28BE9800C538AE /* IntervalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalCell.swift; sourceTree = "<group>"; };
 		C8C0E89C1C28C4A300C538AE /* PhotoTableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableAdapter.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		C89539911C279DE800A471AF = {
 			isa = PBXGroup;
 			children = (
+				C8A3AC541C3275540017A301 /* MeterImageAnnotation.swift */,
 				C895399C1C279DE800A471AF /* Photometer */,
 				C895399B1C279DE800A471AF /* Products */,
 				C8C0E8B21C2F1AEC00C538AE /* Reveal.framework */,
@@ -181,6 +184,7 @@
 				C8C0E89D1C28C4A300C538AE /* PhotoTableAdapter.swift in Sources */,
 				C8C0E8951C27DFEE00C538AE /* PhotoFetcher.swift in Sources */,
 				C8C0E89F1C28C6FD00C538AE /* PhotoCell.swift in Sources */,
+				C8A3AC551C3275540017A301 /* MeterImageAnnotation.swift in Sources */,
 				C89539B01C27D96B00A471AF /* MeterImage.swift in Sources */,
 				C8C0E8D31C2FC16A00C538AE /* CameraOverlayView.swift in Sources */,
 				C8C0E8A21C2BC6B500C538AE /* C.swift in Sources */,

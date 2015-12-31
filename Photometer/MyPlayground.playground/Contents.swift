@@ -6,5 +6,13 @@ var str = "Hello, playground"
 var isPhoto = false
 
 
-var kasse = "kasse"
-var rolle = "rolle"
+var speed : Int?
+let direction = 0
+
+let speedString = speed == 0 ? "first" : "second"
+
+let speedstring2 = speed ?? 6
+
+speed ?? 1
+
+let spStr = "\()"

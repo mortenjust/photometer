@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Photos
 
 protocol PhotoTableAdapterDelegate {
     func PhotoTableWantsFetchUpdate()
@@ -28,19 +29,34 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
         return rowNumber%2 == 0 ? true : false
     }
     
+
     func getPhotoCellForIndexPath(indexPath:NSIndexPath) -> UITableViewCell {
         let photo = photoTable.dequeueReusableCellWithIdentifier("photoCell")! as! PhotoCell
         photo.resetAllLabels()
-        let photoId = (indexPath.row+1)/2 - 1
-        let currentPhoto = allPhotos[photoId]
-        photo.meterImage = currentPhoto
-//        if let location = currentPhoto.location {
-//            photo.setAddressString(location)
-//        }
-        photo.updateTimeTaken(currentPhoto.creationDate)
-        photo.getImage()
         vc.currentMeterImage = photo.meterImage
         
+        let manager = PHCachingImageManager.defaultManager()
+        if photo.tag != 0 {
+            manager.cancelImageRequest(PHImageRequestID(photo.tag))
+        }
+        
+        let photoId = (indexPath.row+1)/2 - 1
+        let currentPhoto = allPhotos[photoId]
+        
+        photo.meterImage = currentPhoto
+        photo.updateTimeTaken(currentPhoto.creationDate)
+        
+       let imageSize = CGSizeMake(128, 128)
+        photo.tag = Int(manager.requestImageForAsset(currentPhoto.asset, targetSize: imageSize, contentMode: .AspectFill, options: nil, resultHandler: { (resultImage, _) -> Void in
+            
+            if let image = resultImage {
+                photo.didEnterViewPort()
+                photo.photo.image = image
+            } else {
+                print("\(photo.tag) is bad.")
+            }
+        }))        
+
         return photo
     }
     
