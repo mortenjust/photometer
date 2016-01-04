@@ -46,8 +46,7 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
         
         prefersStatusBarHidden()
         
-        adapter = PhotoTableAdapter()
-        adapter.photoTable = photoTable
+        adapter = PhotoTableAdapter(p: photoTable)
         adapter.adapterDelegate = self
         adapter.vc = self
         
@@ -58,6 +57,7 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
     
         fetcher = PhotoFetcher()        
         refreshPhotoList()
+
     }
     
     func PhotoFetcherLibraryChanged() {
@@ -74,13 +74,14 @@ class ViewController: UIViewController, PhotoTableAdapterDelegate {
         }
     }
     
-    
+//    if this function is active 3dtouch peek doesn't work
 //    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
 //        return selectedMeterImage == nil ? false : true
 //    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("vcseg: Ready for segue \(segue.identifier)")
+        print("vcseg: Ready for segue \(segue.identifier) with image \(self.selectedMeterImage)")
+
             if segue.identifier == "detailSegue" {
                 let detailVc = segue.destinationViewController as! DetailViewController
                 if let image = self.selectedMeterImage {

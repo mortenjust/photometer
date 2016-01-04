@@ -9,12 +9,14 @@
 import UIKit
 import MapKit
 import Contacts
+import CoreLocation
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    var meterImage:MeterImage!
-
+    var meterImage:MeterImage?
+    var pin:MKPointAnnotation!
+    let manager = CLLocationManager()
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -29,25 +31,62 @@ class DetailViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        if let location = meterImage.location {
-            let pin = MKPointAnnotation()
+        pin = MKPointAnnotation()
+        if let image = meterImage {
+            showImageOnMap(image)
+        } else {
+            showCurrentLocationOnMap()
+        }
+        
+    }
+    
+    
+    func showCurrentLocationOnMap(){
+        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.startUpdatingLocation()
+        
+        // just in case
+        NSTimer.after(1.second) { () -> Void in
+            self.manager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        moveCameraToLocation(newLocation)
+    }
+    
+    func movePinToCoordinate(coordinate:CLLocationCoordinate2D){
+        pin.coordinate = coordinate
+    }
+    
+    
+    func showImageOnMap(image:MeterImage){
+        if let location = image.location {
+
             
             let altitude = formatDistance(location.altitude)
             let speed = formatSpeed(location.speed)
             let floor = location.floor?.level == nil ? "" : "\(location.floor?.level) floor"
             
             
-            pin.title = formatTime(meterImage.creationDate)
+            pin.title = formatTime(image.creationDate)
             pin.subtitle = "altitude \(altitude) \(speed) \(floor)"
             
             print(pin.subtitle!)
-            
-            pin.coordinate = location.coordinate
+            movePinToCoordinate(location.coordinate)
             mapView.addAnnotation(pin)
-            let cam = MKMapCamera(lookingAtCenterCoordinate: location.coordinate, fromDistance: 500, pitch: 50, heading: 0)
-            mapView.camera = cam
+            moveCameraToLocation(location)
             mapView.selectAnnotation(pin, animated: true)
-            }
+        }
+    }
+    
+    func moveCameraToLocation(loc:CLLocation){
+        let cam = MKMapCamera(lookingAtCenterCoordinate: loc.coordinate, fromDistance: 500, pitch: 50, heading: 0)
+    
+        mapView.camera = cam
     }
     
     

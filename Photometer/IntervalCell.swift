@@ -20,6 +20,7 @@ class IntervalCell : UITableViewCell {
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var millisecondsLabel: UILabel!
     @IBOutlet weak var floorsLabel: UILabel!
+    var topLabel: UILabel! // the colored one
 
     var timer : NSTimer?
     
@@ -65,7 +66,6 @@ class IntervalCell : UITableViewCell {
     }
     
     func updateAltitudeDifference(start:CLLocation, end:CLLocation) {
-        
         let diff = start.altitude.distanceTo(end.altitude)
         let formatter = MKDistanceFormatter()
         formatter.unitStyle = .Abbreviated
@@ -109,7 +109,7 @@ class IntervalCell : UITableViewCell {
 
         
         let timeLabels = [millisecondsLabel, secondsLabel, minutesLabel, hoursLabel, daysLabel]
-        var topLabel = millisecondsLabel
+        topLabel = millisecondsLabel
         
         
         for label in timeLabels {
@@ -117,9 +117,28 @@ class IntervalCell : UITableViewCell {
                 topLabel = label
             }
         }
-        topLabel.textColor = C.highlightColor
     }
     
+    func getHSBA(color:UIColor) -> (hue:CGFloat, saturation:CGFloat, brightness:CGFloat, alpha:CGFloat) {
+        var hue:CGFloat = 0.0
+        var sat:CGFloat = 0.0
+        var bri:CGFloat = 0.0
+        var alpha:CGFloat = 0.0
+        color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        return (hue:hue, saturation:sat, brightness:bri, alpha:alpha)
+    }
+
+    
+    func setTopLabelColorFromBackgroundColor(b: UIColor){
+        let hsba = getHSBA(b)
+
+        let hue = hsba.hue + 0.1 % 1.0
+        let saturation = hsba.saturation - 0.5
+        let brightness:CGFloat = 0.8
+        let labelColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+        
+        topLabel.textColor = labelColor
+    }
     
     func setTimeLabel(label:UILabel, value:Int, unit:String){
         var pluralS = ""
@@ -143,3 +162,5 @@ class IntervalCell : UITableViewCell {
     }
     
 }
+
+

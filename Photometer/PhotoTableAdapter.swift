@@ -14,11 +14,21 @@ protocol PhotoTableAdapterDelegate {
     func PhotoTableWantsFetchUpdate()
 }
 
-class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, PhotoCellDelegate {
+class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, PhotoCellDelegate, UIScrollViewDelegate {
     var photoTable : UITableView!
     var allPhotos:[MeterImage] = [MeterImage]()
     var adapterDelegate : PhotoTableAdapterDelegate?
     var vc : ViewController!
+    var locationManager:CLLocationManager!
+    var currentBg = UIColor.darkGrayColor()
+    
+    
+    init(p:UITableView) {
+        super.init()
+        self.photoTable = p
+        setBgForScrollPosition(photoTable.contentOffset.y)
+    }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = (allPhotos.count * 2) - 1 + 1 // +1 is for the top photo which is the live one
@@ -28,7 +38,6 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     func rowIsPhoto(rowNumber:Int) -> Bool {
         return rowNumber%2 == 0 ? true : false
     }
-    
     
     func meterImageForIndexPath(indexPath:NSIndexPath) -> MeterImage {
         let photoId = (indexPath.row+1)/2 - 1
@@ -88,15 +97,20 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
             interval.updateLocationDistanceFromStartAndEndLocations(locations.start, end: locations.end)
             interval.updateAltitudeDifference(locations.start, end: locations.end)
         }
+
+        interval.setTopLabelColorFromBackgroundColor(currentBg)
+        
         return interval
     }
     
     func getLiveIntervalCell()->UITableViewCell{
         let interval = photoTable.dequeueReusableCellWithIdentifier("intervalCell")! as! IntervalCell
-        
         interval.resetAllLabels()
         let mostRecentPhotoTimestamp = getMostRecentTimestamp()
-        interval.beginTimerFrom(mostRecentPhotoTimestamp)        
+        interval.beginTimerFrom(mostRecentPhotoTimestamp)
+
+        print("setting label based on \(currentBg)")
+        interval.setTopLabelColorFromBackgroundColor(currentBg)
         return interval
     }
     
@@ -135,16 +149,17 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if rowIsPhoto(indexPath.row){
-//            let photoCell = cell as! PhotoCell
-//            photoCell.prepareToEnterViewport()
-//        }
+        
+        if indexPath.row == 0 {
+            locationManager = CLLocationManager()
+            locationManager.requestWhenInUseAuthorization()
+        }
         
         if !rowIsPhoto(indexPath.row){
             let interval = cell as! IntervalCell
             interval.prepareForViewport()
         }
-    }
+}
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !rowIsPhoto(indexPath.row){return}
@@ -152,11 +167,13 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     }
     
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        print("highlight")
-        vc.selectedMeterImage = meterImageForIndexPath(indexPath)
-
+        print("highlight row \(indexPath.row)")
+        if(indexPath.row != 0){
+            vc.selectedMeterImage = meterImageForIndexPath(indexPath)
+            }
     }
     
+
     func getLocationsForIntervalCell(cellIndex:Int) -> (start:CLLocation, end:CLLocation)? {
         let aboveIndex = ((cellIndex-1) + 1) / 2
         let belowIndex = ((cellIndex+1) + 1) / 2
@@ -166,7 +183,6 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
                 return(start:start, end:end)
             }
         }
-        
         return nil
     }
     
@@ -178,10 +194,26 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
     func getTimestampsForIntervalCell(cellIndex:Int) -> (start:NSDate, end:NSDate){
         let aboveIndex = ((cellIndex-1) + 1) / 2
         let belowIndex = ((cellIndex+1) + 1) / 2
-
         let start = allPhotos[belowIndex].creationDate
         let end = allPhotos[aboveIndex].creationDate
-        
         return(start:start, end:end)
      }
+    
+    // Mark: Scrollview color when scrolling
+    
+    func setBgForScrollPosition(y:CGFloat){
+        let pos = y
+        let slowedDownPos = pos * 0.005
+        let h:CGFloat = (slowedDownPos % 100) / 100
+        let s:CGFloat = 1.0
+        let b:CGFloat = 0.10
+        let bg = UIColor(hue: h, saturation: s, brightness: b, alpha: 1)
+        currentBg = bg
+        photoTable.backgroundColor = bg
+    }
+    
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        setBgForScrollPosition(scrollView.contentOffset.y)
+    }
 }
