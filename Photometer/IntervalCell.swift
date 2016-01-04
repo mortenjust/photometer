@@ -20,8 +20,9 @@ class IntervalCell : UITableViewCell {
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var millisecondsLabel: UILabel!
     @IBOutlet weak var floorsLabel: UILabel!
+    @IBOutlet weak var midStick: UIView!
     var topLabel: UILabel! // the colored one
-
+    
     var timer : NSTimer?
     
     var allLabels:[UILabel]!
@@ -138,6 +139,9 @@ class IntervalCell : UITableViewCell {
         let labelColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
         
         topLabel.textColor = labelColor
+        
+        let mutedVersion = UIColor(hue: hue, saturation: saturation, brightness: 0.3, alpha: 1)
+        midStick.backgroundColor = mutedVersion
     }
     
     func setTimeLabel(label:UILabel, value:Int, unit:String){

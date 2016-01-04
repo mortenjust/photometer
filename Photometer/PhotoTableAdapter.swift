@@ -206,7 +206,7 @@ class PhotoTableAdapter: NSObject, UITableViewDelegate, UITableViewDataSource, P
         let slowedDownPos = pos * 0.005
         let h:CGFloat = (slowedDownPos % 100) / 100
         let s:CGFloat = 1.0
-        let b:CGFloat = 0.10
+        let b:CGFloat = 0.07
         let bg = UIColor(hue: h, saturation: s, brightness: b, alpha: 1)
         currentBg = bg
         photoTable.backgroundColor = bg
